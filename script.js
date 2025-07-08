@@ -31,27 +31,38 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
         });
 });
 
+fetch('./event_rank_summary.csv')
+    .then(response => response.text())
+    .then(csvText => {
+        const rows = csvText.trim().split('\n');
+        const table = document.createElement('table');
 
-window.addEventListener('load', () => {
-    let region = 'HK';
-    let type = 'single';
-    let event = '333';
-    //let urlEvents = `https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api/rank/${region}/${type}/${event}.json`;
-    let urlEvents = `https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api/rank/${region}/${type}/${event}.json`;
+        rows.forEach((row, rowIndex) => {
+            const tr = document.createElement('tr');
+            const cells = row.split(',');
+            cells.forEach((cell, colIndex) => {
+                const cellEl = document.createElement(rowIndex === 0 ? 'th' : 'td');
 
-    fetch(urlEvents)
-        .then(response => response.json())  // 这里把 ReadableStream 解析为 JSON
-        .then(data => {
-            console.log(data); // 这里才是真正的JSON数据
-            let show;
-            show = 
-            `<p><strong>Total: </strong>${data.total}</p>
-            <p><strong>?: </strong>${data.items[100].best}</p>
-            `;
-            document.getElementById('rank-result').innerHTML = show;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+                if (eventNameMap[cell]) {
+                    cellEl.textContent = eventNameMap[cell];
+                } else if (colIndex == cells.length - 1) {
+                    cellEl.textContent = formatCompactNumber(cell);
+                }
+                else if (cells[0] == '333fm' && colIndex != cells.length - 1) {
+                    cellEl.textContent = (cell / 100).toFixed(2);
+                } else {
+                    cellEl.textContent = formatResult(cell);
+                }
+                tr.appendChild(cellEl);
+            });
+
+            table.appendChild(tr);
         });
 
-});
+        const container = document.getElementById('table-container');
+        container.innerHTML = '';
+        container.appendChild(table);
+    })
+    .catch(error => {
+        document.getElementById('table-container').textContent = 'Failed to load CSV: ' + error;
+    });

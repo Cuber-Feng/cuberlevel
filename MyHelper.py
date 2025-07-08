@@ -1,11 +1,18 @@
 import os
 import platform
+import pandas as pd
 
 def clear_screen():
     if platform.system() == "Windows":
         os.system("cls")
     else:
         os.system("clear")
+        
+def save_to_csv(data_rows, filename):
+    df = pd.DataFrame(data_rows)
+    df = df.set_index('EventId')  # 把 'name' 列设为索引
+    df.to_csv(filename, index=True, encoding='utf-8-sig')  # index=True 会保存索引列
+    print(f"Data saved to {filename}")
 
 def formatResult(tick):
     total_ms = tick * 10
@@ -25,6 +32,8 @@ def getResultByRank(sheet, rank):
     # print(sheet[sheet['worldRank'] == rank]['best'].tolist())
     if sheet[sheet['worldRank'] == rank]['best'].tolist():
         return sheet[sheet['worldRank'] == rank]['best'].tolist()[0]
+    if rank == 0:
+        return getResultByRank(sheet, 1)
     return getResultByRank(sheet, rank-1)
 
 
@@ -57,3 +66,34 @@ def processEvent(df, cur_event):
     print('Slowest:', formatResult(slowest))
     
     print("------------------------------------------------------------------------")
+
+
+def makeFile(df):
+    rows=[]
+    eventList=['222','333','444','555','666','777','333oh','333fm','333bf','clock','skewb','sq1','minx','pyram','444bf','555bf']
+    for cur_event in eventList:
+        sheet_event = df[df['eventId'].astype(str) == str(cur_event)]
+        event_count = sheet_event.shape[0]
+        
+        row = {
+        'eventId': cur_event,
+        'wr': getResultByRank(sheet_event, 1),
+        'top001': getResultByRank(sheet_event, max(1, int(event_count * 0.001))),
+        'top1': getResultByRank(sheet_event, max(1, int(event_count * 0.01))),
+        'top5': getResultByRank(sheet_event, max(1, int(event_count * 0.05))),
+        'top10': getResultByRank(sheet_event, max(1, int(event_count * 0.1))),
+        'top20': getResultByRank(sheet_event, max(1, int(event_count * 0.2))),
+        'top50': getResultByRank(sheet_event, max(1, int(event_count * 0.5))),
+        'slowest': getResultByRank(sheet_event, event_count),
+        'cnt': event_count
+        }
+        rows.append(row)
+
+    # 转成DataFrame
+    result_df = pd.DataFrame(rows)
+    print(rows)
+    # 保存成CSV（根据需要修改文件名）
+    result_df.to_csv('event_rank_summary.csv', index=False, encoding='utf-8-sig')
+    print("Summary saved to event_rank_summary.csv")
+        
+        
