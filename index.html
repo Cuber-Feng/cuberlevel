@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WCA Competitor Lookup</title>
+    <title>Cuber's Overall Score</title>
     <link rel="stylesheet" href="./css/md.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Cuber Level</h1>
+        <h1>Cuber's Score</h1>
         <div class="material-bar">
             <input type="text" id="wcaIdInput" placeholder="WCA ID" class="material-input">
             <button id="lookupBtn" class="material-button">Search</button>
@@ -26,7 +26,10 @@
                 <div id="info-other"></div>
             </div>
         </div>
-        <div id="overallScore" class="hidden"></div>
+        <div id="scores">
+            <div id="overallScore" class="hidden"></div>
+            <div id="scoreOfMyEvents" class="hidden"></div>
+        </div>
         <div id="gradeTable"></div>
     </div>
 

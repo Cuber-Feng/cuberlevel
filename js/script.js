@@ -45,6 +45,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
 
             let tbody = document.createElement('tbody');
             let sumScore = 0;
+            let myEventCnt = 0;
             Object.entries(data.personal_records).forEach(([eventId, record]) => {
                 if (!eventList.includes(eventId))
                     return;
@@ -54,7 +55,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
 
                 let img = document.createElement('img');
                 img.src = `./cube_icons/${eventId}.svg`;
-                img.style.width = "1.2rem";
+                img.style.height = "1.2rem";
                 th.appendChild(img);
                 th.classList = 'sticky-col';
                 tr.appendChild(th);
@@ -72,6 +73,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     }
 
                     if (record.average) {
+                        myEventCnt += 1;
                         let sc = createEl('td', eventDict.get(eventId).getGrade(record.average.best).toFixed(2));
                         sc.classList = 'score';
                         tr.appendChild(sc);
@@ -91,6 +93,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                         tr.appendChild(createEl('td', ' '));
                         tr.appendChild(createEl('td', ' '));
                         tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
                     }
                 }
 
@@ -98,10 +101,17 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             });
 
             let overall = (sumScore / 16).toFixed(2);
+            let scoreofMY = (sumScore / myEventCnt).toFixed(2);
             document.getElementById('overallScore').classList.remove('hidden');
             document.getElementById('overallScore').innerHTML = `
             <strong>Overall Score: </strong>
             <span>${overall}</span>
+            `;
+
+            document.getElementById('scoreOfMyEvents').classList.remove('hidden');
+            document.getElementById('scoreOfMyEvents').innerHTML = `
+            <strong>My Events Score: </strong>
+            <span>${scoreofMY}</span>
             `;
 
             table.appendChild(tbody);
