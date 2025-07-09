@@ -25,6 +25,39 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             &nbsp;&nbsp;&nbsp;&nbsp; <strong>Gender:</strong> ${person.gender}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Competitions:</strong> ${data.competition_count}</p>
           `;
             document.getElementById('result').innerHTML = html;
+            let table = document.createElement('table');
+            let thead = document.createElement('thead');
+            thead.innerHTML = `
+            <tr>
+            <th>Event</th><th>NR</th><th>CR</th><th>WR</th>
+            <th>Single</th><th>Average</th><th>WR</th><th>CR</th><th>NR</th>
+            </tr>
+            `
+            table.appendChild(thead);
+
+            let tbody = document.createElement('tbody');
+
+            Object.entries(data.personal_records).forEach(([eventId, record]) => {
+                let tr = document.createElement('tr');
+                let th = document.createElement('th');
+                console.log(`Event ID: ${eventId}`);
+                th.textContent = eventNameMap[eventId];
+                tr.appendChild(th);
+                if (record.single) {
+                    let td=document.createElement('td');
+                    td.textContent=record.single.best;
+                    tr.appendChild(td);
+                }
+                if (record.average) {
+                    console.log('  Average:', record.average);
+                }
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+
+            document.getElementById('gradeTable').innerHTML = ``;
+            document.getElementById('gradeTable').appendChild(table);
         })
         .catch(error => {
             document.getElementById('result').innerHTML = `<p style="color:red;">${error.message}</p>`;
