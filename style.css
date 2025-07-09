@@ -36,7 +36,7 @@ header {
     background: #f4f4f4;
 }
 
-#info-avator img{
+#info-avator img {
     border-radius: 5px;
 }
 
@@ -48,11 +48,9 @@ header {
 #table-container {
     overflow-x: auto;
     max-width: 90vw;
-
 }
 
 table {
-    /* width: 100%; */
     border-collapse: collapse;
     margin: 20px 0;
     font-family: 'Roboto', sans-serif;
@@ -60,10 +58,11 @@ table {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
+    width: max-content;
 }
 
-#event-cell{
+#event-cell {
     text-align: center;
 }
 
@@ -92,6 +91,13 @@ td {
 tr:hover {
     background-color: #f1f1f1;
 }
+
+.sticky-col {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
 
 #info {
     display: flex;

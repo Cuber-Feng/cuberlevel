@@ -32,7 +32,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             let thead = document.createElement('thead');
             thead.innerHTML = `
             <tr>
-            <th>Event</th><th>NR</th><th>CR</th><th>WR</th>
+            <th class='sticky-col'>Event</th><th>NR</th><th>CR</th><th>WR</th>
             <th>Single</th><th>Average</th><th>WR</th><th>CR</th><th>NR</th>
             </tr>
             `
@@ -51,8 +51,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 img.src = `https://cubingusa.org/static/img/events/${eventId}.svg`;
                 img.style.width = "1.2rem";
                 th.appendChild(img);
-
-                // th.textContent = eventNameMap[eventId] || eventId;
+                th.classList='sticky-col';
                 tr.appendChild(th);
 
                 if (record.single) {
@@ -94,7 +93,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             document.getElementById('gradeTable').appendChild(table);
         })
         .catch(error => {
-            document.getElementById('result').innerHTML = `<p style="color:red;">${error.message}</p>`;
+            alert(error.message);
         });
 });
 
@@ -121,10 +120,13 @@ fetch('./event_rank_summary.csv')
                     img.style.width = "1.5rem";
                     cellEl.appendChild(img);
                     cellEl.id = 'event-cell';
-
-                } else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
+                    cellEl.classList = 'sticky-col';
+                } else if (cell == 'eventId') {
+                    cellEl.textContent = 'Event';
+                    cellEl.classList = 'sticky-col';
+                }
+                else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
                     cellEl.textContent = 'Competitors';
-                    console.log('cnt');
                 } else if (eventNameMap[cell]) {
                     cellEl.textContent = eventNameMap[cell];
                 } else if (colIndex == cells.length - 1) {
