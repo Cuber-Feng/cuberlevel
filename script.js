@@ -44,8 +44,8 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 th.textContent = eventNameMap[eventId];
                 tr.appendChild(th);
                 if (record.single) {
-                    let td=document.createElement('td');
-                    td.textContent=record.single.best;
+                    let td = document.createElement('td');
+                    td.textContent = record.single.best;
                     tr.appendChild(td);
                 }
                 if (record.average) {
@@ -76,7 +76,10 @@ fetch('./event_rank_summary.csv')
             cells.forEach((cell, colIndex) => {
                 const cellEl = document.createElement(rowIndex === 0 ? 'th' : 'td');
 
-                if (eventNameMap[cell]) {
+                if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
+                    cellEl.textContent = 'Competitors';
+                    console.log('cnt');
+                } else if (eventNameMap[cell]) {
                     cellEl.textContent = eventNameMap[cell];
                 } else if (colIndex == cells.length - 1) {
                     cellEl.textContent = formatCompactNumber(cell);
