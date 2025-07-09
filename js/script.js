@@ -228,3 +228,8 @@ fetch('./event_rank_summary.csv')
     .catch(error => {
         document.getElementById('table-container').textContent = 'Failed to load CSV: ' + error;
     });
+
+
+document.getElementById("wcaIdInput").addEventListener("click", function () {
+    this.select();
+});
