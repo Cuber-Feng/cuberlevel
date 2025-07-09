@@ -7,6 +7,11 @@ body {
     margin: 0 auto;
 }
 
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
 header {
     display: flex;
     align-items: center;
@@ -15,14 +20,24 @@ header {
     margin: 0 auto;
 }
 
-#person {
+.card {
     margin-top: 20px;
     background: white;
     padding: 15px;
     border-radius: 5px;
     width: fit-content;
     max-width: 80vw;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
+}
+
+#info {
+    padding: 0.5rem;
+    border-radius: 5px;
+    background: #f4f4f4;
+}
+
+#info-avator img{
+    border-radius: 5px;
 }
 
 #wcaIdInput {
@@ -46,6 +61,10 @@ table {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+}
+
+#event-cell{
+    text-align: center;
 }
 
 th,
@@ -105,7 +124,7 @@ tr:hover {
         padding: 0;
     }
 
-    #info-name{
+    #info-name {
         text-align: center;
     }
 

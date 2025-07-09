@@ -45,7 +45,14 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     return;
                 let tr = document.createElement('tr');
                 let th = document.createElement('th');
-                th.textContent = eventNameMap[eventId] || eventId;
+                th.id = 'event-cell';
+
+                let img = document.createElement('img');
+                img.src = `https://cubingusa.org/static/img/events/${eventId}.svg`;
+                img.style.width = "1.2rem";
+                th.appendChild(img);
+
+                // th.textContent = eventNameMap[eventId] || eventId;
                 tr.appendChild(th);
 
                 if (record.single) {
@@ -59,19 +66,26 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     } else {
                         tr.appendChild(createEl('td', formatResult(record.single.best)));
                     }
-                }
-                if (record.average) {
-                    if (eventId == '333fm') {
-                        tr.appendChild(createEl('td', record.average.best));
-                    } else if (eventId == '333mbf' || eventId == '333mbo') {
-                        tr.appendChild(createEl('td', decodeMultiBlind(record.average.best)));
+
+                    if (record.average) {
+                        if (eventId == '333fm') {
+                            tr.appendChild(createEl('td', record.average.best));
+                        } else if (eventId == '333mbf' || eventId == '333mbo') {
+                            tr.appendChild(createEl('td', decodeMultiBlind(record.average.best)));
+                        } else {
+                            tr.appendChild(createEl('td', formatResult(record.average.best)));
+                        }
+                        tr.appendChild(createEl('td', record.average.world_rank));
+                        tr.appendChild(createEl('td', record.average.continent_rank));
+                        tr.appendChild(createEl('td', record.average.country_rank));
                     } else {
-                        tr.appendChild(createEl('td', formatResult(record.average.best)));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
                     }
-                    tr.appendChild(createEl('td', record.average.world_rank));
-                    tr.appendChild(createEl('td', record.average.continent_rank));
-                    tr.appendChild(createEl('td', record.average.country_rank));
                 }
+
                 tbody.appendChild(tr);
             });
 
@@ -101,8 +115,14 @@ fetch('./event_rank_summary.csv')
             const cells = row.split(',');
             cells.forEach((cell, colIndex) => {
                 const cellEl = document.createElement(rowIndex == 0 || colIndex == 0 ? 'th' : 'td');
+                if (eventList.includes(cell)) {
+                    let img = document.createElement('img');
+                    img.src = `https://cubingusa.org/static/img/events/${cell}.svg`;
+                    img.style.width = "1.5rem";
+                    cellEl.appendChild(img);
+                    cellEl.id = 'event-cell';
 
-                if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
+                } else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
                     cellEl.textContent = 'Competitors';
                     console.log('cnt');
                 } else if (eventNameMap[cell]) {
