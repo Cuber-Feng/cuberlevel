@@ -6,17 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WCA Competitor Lookup</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="md.css">
 </head>
 
 <body>
-    <h2>1. Search By Person</h2>
-    <code>https://www.worldcubeassociation.org/api/v0/persons/${wcaId}</code>
-    <p>Enter a WCA ID (e.g., <code>2017FENG35</code>)</p>
-    <input type="text" id="wcaIdInput" placeholder="WCA ID">
-    <button id="lookupBtn">Lookup</button>
-    <div id="result"></div>
-    <div id="gradeTable"></div>
+    <header>
+        <h2>Cuber Level</h2>
+        <div class="material-bar">
+            <input type="text" id="wcaIdInput" placeholder="WCA ID" class="material-input">
+            <button id="lookupBtn" class="material-button">Search</button>
+        </div>
+    </header>
 
+    <div id="person">
+        <div id="info">
+            <div id="info-avator">Please search by WCA ID to see the information.</div>
+            <div id="info-text">
+                <div id="info-name"></div>
+                <div id="info-other"></div>
+            </div>
+        </div>
+        <div id="gradeTable"></div>
+    </div>
+
+    <h3>Index</h3>
     <div id="table-container">Loading...</div>
 
     <script src="script.js"></script>

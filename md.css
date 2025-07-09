@@ -1,0 +1,39 @@
+.material-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Roboto', sans-serif;
+  width: fit-content;
+  margin: 20px;
+}
+
+/* 紧凑输入框 */
+.material-input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 6px 8px;
+  font-size: 14px;
+  width: 160px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.material-input:focus {
+  border-bottom: 2px solid #3f51b5;
+}
+
+/* 紧凑按钮 */
+.material-button {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.2s;
+}
+
+.material-button:hover {
+  background-color: #303f9f;
+}

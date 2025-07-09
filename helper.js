@@ -1,3 +1,9 @@
+const eventList = [
+    "222", "333", "444", "555", "666", "777",
+    "333oh", "333fm", "333bf", "clock", "skewb",
+    "sq1", "minx", "pyram", "444bf", "555bf", "333mbf"
+]
+
 const eventNameMap = {
     '222': '2x2x2 Cube',
     '333': '3x3x3 Cube',
@@ -24,7 +30,8 @@ const eventNameMap = {
     'top10': '10%',
     'top20': '20%',
     'top50': '50%',
-    'slowest': 'Slowest'
+    'slowest': 'Slowest',
+    '333mbf': '3x3 Multi-Blind'
 };
 
 function formatCompactNumber(num) {
@@ -62,4 +69,26 @@ function formatResult(tick) {
     } else {
         return `${seconds}.${String(subsec).padStart(2, '0')}`;
     }
+}
+
+function createEl(_type, _text) {
+    let tmp = document.createElement(_type);
+    tmp.textContent = _text;
+    return tmp;
+}
+
+function decodeMultiBlind(result) {
+    const resultStr = result.toString().padStart(9, '0');
+
+    const prefix = parseInt(resultStr.slice(0, 2)); // 前两位 (99 - success + missed)
+    const minutes = parseInt(resultStr.slice(2, 7)); // 中间五位：分钟数
+    const missed = parseInt(resultStr.slice(7, 9)); // 后两位：missed
+
+    const success = 99 - prefix;       // 成功数
+    const attempted = success + missed; // 总尝试数
+    const timeMinutes = Math.floor(minutes / 60);
+    const timeSeconds = minutes % 60;
+
+    const timeStr = `${timeMinutes}:${timeSeconds.toString().padStart(2, '0')}`;
+    return `${success}/${attempted} ${timeStr}`;
 }

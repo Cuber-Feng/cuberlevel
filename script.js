@@ -16,15 +16,18 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
         })
         .then(data => {
             console.log(data);
+            // info
             const person = data.person;
-            const html = `
-            <img src=${person.avatar.url} style='width: 10rem'></img>
-            <h2>${person.name}</h2>
+            const gender = (data.person.gender == 'm' ? "Male" : "Female");
+
+            document.getElementById('info-avator').innerHTML = `<img src=${person.avatar.url} style='height: 8rem'></img>`;
+            document.getElementById('info-name').textContent = person.name;
+            document.getElementById('info-other').innerHTML = `
             <p><strong>WCA ID:</strong> ${person.wca_id}
-            &nbsp;&nbsp;&nbsp;&nbsp;<strong>Country:</strong> ${person.country.name} 
-            &nbsp;&nbsp;&nbsp;&nbsp; <strong>Gender:</strong> ${person.gender}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Competitions:</strong> ${data.competition_count}</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>Country:</strong> ${person.country.name} </p>
+            <p><strong>Gender:</strong> ${gender}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Competitions:</strong> ${data.competition_count}</p>
           `;
-            document.getElementById('result').innerHTML = html;
+            // result
             let table = document.createElement('table');
             let thead = document.createElement('thead');
             thead.innerHTML = `
@@ -38,30 +41,53 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             let tbody = document.createElement('tbody');
 
             Object.entries(data.personal_records).forEach(([eventId, record]) => {
+                if (!eventList.includes(eventId))
+                    return;
                 let tr = document.createElement('tr');
                 let th = document.createElement('th');
-                console.log(`Event ID: ${eventId}`);
-                th.textContent = eventNameMap[eventId];
+                th.textContent = eventNameMap[eventId] || eventId;
                 tr.appendChild(th);
+
                 if (record.single) {
-                    let td = document.createElement('td');
-                    td.textContent = record.single.best;
-                    tr.appendChild(td);
+                    tr.appendChild(createEl('td', record.single.country_rank));
+                    tr.appendChild(createEl('td', record.single.continent_rank));
+                    tr.appendChild(createEl('td', record.single.world_rank));
+                    if (eventId == '333fm') {
+                        tr.appendChild(createEl('td', record.single.best));
+                    } else if (eventId == '333mbf' || eventId == '333mbo') {
+                        tr.appendChild(createEl('td', decodeMultiBlind(record.single.best)));
+                    } else {
+                        tr.appendChild(createEl('td', formatResult(record.single.best)));
+                    }
                 }
                 if (record.average) {
-                    console.log('  Average:', record.average);
+                    if (eventId == '333fm') {
+                        tr.appendChild(createEl('td', record.average.best));
+                    } else if (eventId == '333mbf' || eventId == '333mbo') {
+                        tr.appendChild(createEl('td', decodeMultiBlind(record.average.best)));
+                    } else {
+                        tr.appendChild(createEl('td', formatResult(record.average.best)));
+                    }
+                    tr.appendChild(createEl('td', record.average.world_rank));
+                    tr.appendChild(createEl('td', record.average.continent_rank));
+                    tr.appendChild(createEl('td', record.average.country_rank));
                 }
                 tbody.appendChild(tr);
             });
 
             table.appendChild(tbody);
-
             document.getElementById('gradeTable').innerHTML = ``;
             document.getElementById('gradeTable').appendChild(table);
         })
         .catch(error => {
             document.getElementById('result').innerHTML = `<p style="color:red;">${error.message}</p>`;
         });
+});
+
+document.getElementById('wcaIdInput').addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        document.getElementById('lookupBtn').click(); // 触发按钮点击事件
+    }
 });
 
 fetch('./event_rank_summary.csv')
@@ -74,7 +100,7 @@ fetch('./event_rank_summary.csv')
             const tr = document.createElement('tr');
             const cells = row.split(',');
             cells.forEach((cell, colIndex) => {
-                const cellEl = document.createElement(rowIndex === 0 ? 'th' : 'td');
+                const cellEl = document.createElement(rowIndex == 0 || colIndex == 0 ? 'th' : 'td');
 
                 if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
                     cellEl.textContent = 'Competitors';

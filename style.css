@@ -2,19 +2,38 @@ body {
     font-family: Arial, sans-serif;
     padding: 20px;
     background: #f4f4f4;
+    width: fit-content;
+    max-width: 90vw;
+    margin: 0 auto;
 }
 
-#result {
+header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#person {
     margin-top: 20px;
     background: white;
     padding: 15px;
     border-radius: 5px;
+    width: fit-content;
+    max-width: 80vw;
+    margin: 0 auto;
 }
 
-input,
-button {
-    padding: 8px;
-    font-size: 16px;
+#wcaIdInput {
+    width: 8rem;
+}
+
+#gradeTable,
+#table-container {
+    overflow-x: auto;
+    max-width: 90vw;
+
 }
 
 table {
@@ -53,4 +72,41 @@ td {
 
 tr:hover {
     background-color: #f1f1f1;
+}
+
+#info {
+    display: flex;
+}
+
+
+#info-text {
+    padding: 0.5REM 1rem;
+}
+
+#info-name {
+    font-size: 1.5REM;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    #info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    h2,
+    h3,
+    .material-bar {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    #info-name{
+        text-align: center;
+    }
+
 }
