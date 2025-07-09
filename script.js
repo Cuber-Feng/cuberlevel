@@ -23,9 +23,10 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             document.getElementById('info-avator').innerHTML = `<img src=${person.avatar.url} style='height: 8rem'></img>`;
             document.getElementById('info-name').textContent = person.name;
             document.getElementById('info-other').innerHTML = `
-            <p><strong>WCA ID:</strong> ${person.wca_id}
-            &nbsp;&nbsp;&nbsp;&nbsp;<strong>Country:</strong> ${person.country.name} </p>
-            <p><strong>Gender:</strong> ${gender}&nbsp;&nbsp;&nbsp;&nbsp;<strong>Competitions:</strong> ${data.competition_count}</p>
+            <span><strong>WCA ID:</strong> ${person.wca_id}</span>
+            <span><strong>Country:</strong> ${person.country?person.country.name : countryCodeMap[person.country_iso2]}</span>
+            <span><strong>Gender:</strong> ${gender}</span>
+            <span><strong>Competitions:</strong> ${data.competition_count}</span>
           `;
             // result
             let table = document.createElement('table');
@@ -48,10 +49,10 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 th.id = 'event-cell';
 
                 let img = document.createElement('img');
-                img.src = `https://cubingusa.org/static/img/events/${eventId}.svg`;
+                img.src = `./cube_icons/${eventId}.svg`;
                 img.style.width = "1.2rem";
                 th.appendChild(img);
-                th.classList='sticky-col';
+                th.classList = 'sticky-col';
                 tr.appendChild(th);
 
                 if (record.single) {
@@ -92,8 +93,12 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             document.getElementById('gradeTable').innerHTML = ``;
             document.getElementById('gradeTable').appendChild(table);
         })
+
         .catch(error => {
-            alert(error.message);
+            if (error.message == 'Competitor not found.')
+                alert(error.message);
+            else
+                console.log(error.message);
         });
 });
 
@@ -116,7 +121,7 @@ fetch('./event_rank_summary.csv')
                 const cellEl = document.createElement(rowIndex == 0 || colIndex == 0 ? 'th' : 'td');
                 if (eventList.includes(cell)) {
                     let img = document.createElement('img');
-                    img.src = `https://cubingusa.org/static/img/events/${cell}.svg`;
+                    img.src = `./cube_icons/${cell}.svg`;
                     img.style.width = "1.5rem";
                     cellEl.appendChild(img);
                     cellEl.id = 'event-cell';

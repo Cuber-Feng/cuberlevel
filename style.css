@@ -31,9 +31,24 @@ header {
 }
 
 #info {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     border-radius: 5px;
     background: #f4f4f4;
+}
+
+#info-text {
+    padding: 0 0 0 1rem;
+}
+
+#info-other {
+    padding-top: 1rem;
+}
+
+#info-other span{
+    white-space: nowrap;
+    display: inline-block;
+    padding-right: 1rem;
+    padding-bottom: 0.4rem;
 }
 
 #info-avator img {
@@ -101,11 +116,6 @@ tr:hover {
 
 #info {
     display: flex;
-}
-
-
-#info-text {
-    padding: 0.5REM 1rem;
 }
 
 #info-name {
