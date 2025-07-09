@@ -44,7 +44,7 @@ header {
     padding-top: 1rem;
 }
 
-#info-other span{
+#info-other span {
     white-space: nowrap;
     display: inline-block;
     padding-right: 1rem;
@@ -144,4 +144,24 @@ tr:hover {
         text-align: center;
     }
 
+    .card {
+        max-width: none;
+        width: 100vw;
+        margin-right: 0;
+        box-sizing: border-box;
+        border-radius: 0;
+    }
+
+    body {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: none;
+        width: 100vw;
+    }
+
+    header {
+        margin: 0 auto;
+    }
 }

@@ -23,10 +23,14 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             document.getElementById('info-avator').innerHTML = `<img src=${person.avatar.url} style='height: 8rem'></img>`;
             document.getElementById('info-name').textContent = person.name;
             document.getElementById('info-other').innerHTML = `
+            <div>
             <span><strong>WCA ID:</strong> ${person.wca_id}</span>
             <span><strong>Country:</strong> ${person.country?person.country.name : countryCodeMap[person.country_iso2]}</span>
+            </div>
+            <div>
             <span><strong>Gender:</strong> ${gender}</span>
             <span><strong>Competitions:</strong> ${data.competition_count}</span>
+            </div>
           `;
             // result
             let table = document.createElement('table');
