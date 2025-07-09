@@ -97,10 +97,19 @@ th {
     border-bottom: 1px solid #e0e0e0;
 }
 
+th.score {
+    background-color: antiquewhite;
+}
+
 td {
     color: #212121;
     border-bottom: 1px solid #eee;
     transition: background-color 0.3s;
+}
+
+td.score {
+    background-color: rgb(255, 248, 239);
+    font-style: italic;
 }
 
 tr:hover {
@@ -113,7 +122,6 @@ tr:hover {
     z-index: 2;
 }
 
-
 #info {
     display: flex;
 }
@@ -121,6 +129,18 @@ tr:hover {
 #info-name {
     font-size: 1.5REM;
     font-weight: 600;
+}
+
+#overallScore {
+    background-color: antiquewhite;
+    margin: 1rem 1rem 0rem 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.hidden{
+    display: none;
 }
 
 @media (max-width: 600px) {

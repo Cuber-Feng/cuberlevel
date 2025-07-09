@@ -40,6 +40,8 @@
   background-color: #303f9f;
 }
 
+
+
 @media (max-width: 600px) {
   .material-bar {
     width: 85vw;
