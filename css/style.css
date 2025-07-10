@@ -109,8 +109,9 @@ td.score {
     font-style: italic;
 }
 
+td.score:hover,
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(226, 226, 226, 0.30);
 }
 
 .sticky-col {
@@ -140,6 +141,10 @@ tr:hover {
     margin-top: 1rem;
     display: flex;
     justify-content: space-evenly
+}
+
+#scores:hover {
+    background-color: antiquewhite;
 }
 
 .hidden {
@@ -201,7 +206,7 @@ tr:hover {
         width: fit-content;
     }
 
-    th,td{
+    th, td {
         padding: 2px 4px;
         border: 1px solid #2b2b2b;
     }
