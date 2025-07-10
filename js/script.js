@@ -1,7 +1,10 @@
 document.getElementById('lookupBtn').addEventListener('click', () => {
     const wcaId = document.getElementById('wcaIdInput').value.trim();
     if (!wcaId) {
-        alert('Please enter a WCA ID.');
+        return;
+    }
+    if (!isValidWcaId(wcaId)) {
+        window.open(`https://www.worldcubeassociation.org/search?q=${wcaId}`, "_blank");
         return;
     }
 
@@ -89,7 +92,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                             sumScore = sumScore + eventDict.get(eventId).getGrade(record.average.best);
                         }
                         if (eventId == '333fm') {
-                            tr.appendChild(createEl('td', (record.average.best/100).toFixed(2)));
+                            tr.appendChild(createEl('td', (record.average.best / 100).toFixed(2)));
                         } else if (eventId == '333mbf' || eventId == '333mbo') {
                             tr.appendChild(createEl('td', decodeMultiBlind(record.average.best)));
                         } else {

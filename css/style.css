@@ -151,6 +151,10 @@ tr:hover {
     display: none;
 }
 
+a{
+    color: rgb(195, 121, 25);
+}
+
 @media (max-width: 600px) {
     #info {
         flex-direction: column;

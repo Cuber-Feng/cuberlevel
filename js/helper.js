@@ -292,3 +292,8 @@ function decodeMultiBlind(result) {
     const timeStr = `${timeMinutes}:${timeSeconds.toString().padStart(2, '0')}`;
     return `${success}/${attempted} ${timeStr}`;
 }
+
+function isValidWcaId(id) {
+    const pattern = /^[0-9]{4}[a-zA-Z]{4}[0-9]{2}$/;
+    return pattern.test(id);
+}
