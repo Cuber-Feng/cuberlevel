@@ -2,6 +2,7 @@ import pandas as pd
 import MyHelper
 
 df = pd.read_csv('./WCA_export/WCA_export_RanksAverage.tsv', sep='\t', encoding='utf-8')
+df_single = pd.read_csv('./WCA_export/WCA_export_RanksSingle.tsv', sep='\t', encoding='utf-8')
 MyHelper.clear_screen()
 
 while True:
@@ -14,6 +15,6 @@ while True:
         MyHelper.clear_screen()
         continue
     if currentEvent == 'm':
-        MyHelper.makeFile(df)
+        MyHelper.makeFile(df, df_single)
     else:
         MyHelper.processEvent(df, currentEvent)

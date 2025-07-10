@@ -72,12 +72,22 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                         tr.appendChild(createEl('td', formatResult(record.single.best)));
                     }
 
-                    if (record.average) {
+                    if (['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
                         myEventCnt += 1;
-                        let sc = createEl('td', eventDict.get(eventId).getGrade(record.average.best).toFixed(2));
+                        let sc = createEl('td', eventDict.get(eventId).getGrade(record.single.best).toFixed(2));
                         sc.classList = 'score';
                         tr.appendChild(sc);
-                        sumScore = sumScore + eventDict.get(eventId).getGrade(record.average.best);
+                        sumScore = sumScore + eventDict.get(eventId).getGrade(record.single.best);
+                    }
+
+                    if (record.average) {
+                        if (!['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
+                            myEventCnt += 1;
+                            let sc = createEl('td', eventDict.get(eventId).getGrade(record.average.best).toFixed(2));
+                            sc.classList = 'score';
+                            tr.appendChild(sc);
+                            sumScore = sumScore + eventDict.get(eventId).getGrade(record.average.best);
+                        }
                         if (eventId == '333fm') {
                             tr.appendChild(createEl('td', record.average.best));
                         } else if (eventId == '333mbf' || eventId == '333mbo') {
@@ -100,7 +110,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 tbody.appendChild(tr);
             });
 
-            let overall = (sumScore / 16).toFixed(2);
+            let overall = (sumScore / 17).toFixed(2);
             let scoreofMY = (sumScore / myEventCnt).toFixed(2);
             document.getElementById('overallScore').classList.remove('hidden');
             document.getElementById('overallScore').innerHTML = `
@@ -161,17 +171,17 @@ fetch('./event_rank_summary.csv')
                 } else if (cell == 'eventId') {
                     cellEl.textContent = 'Event';
                     cellEl.classList = 'sticky-col';
-                }
-                else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
+                } else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
                     cellEl.textContent = 'Competitors';
                 } else if (eventNameMap[cell]) {
                     cellEl.textContent = eventNameMap[cell];
                 } else if (colIndex == cells.length - 1) {
                     cellEl.textContent = formatCompactNumber(cell);
-                }
-                else if (cells[0] == '333fm' && colIndex != cells.length - 1) {
+                } else if (cells[0] == '333fm' && colIndex != cells.length - 1) {
                     cellEl.textContent = (cell / 100).toFixed(2);
-                } else {
+                } else if ((cells[0] == '333mbf' && colIndex != cells.length - 1))
+                    cellEl.textContent = decodeMultiBlind(cell);
+                else {
                     cellEl.textContent = formatResult(cell);
                 }
 

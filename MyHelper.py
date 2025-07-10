@@ -68,30 +68,47 @@ def processEvent(df, cur_event):
     print("------------------------------------------------------------------------")
 
 
-def makeFile(df):
+def makeFile(df, df_single):
     rows=[]
-    eventList=['222','333','444','555','666','777','333oh','333fm','333bf','clock','skewb','sq1','minx','pyram','444bf','555bf']
+    eventList=['222','333','444','555','666','777','333bf','333fm','333oh','clock','minx','pyram','skewb','sq1','444bf','555bf','333mbf']
     for cur_event in eventList:
-        sheet_event = df[df['eventId'].astype(str) == str(cur_event)]
-        event_count = sheet_event.shape[0]
-        
-        row = {
-        'eventId': cur_event,
-        'wr': getResultByRank(sheet_event, 1),
-        'top001': getResultByRank(sheet_event, max(1, int(event_count * 0.001))),
-        'top1': getResultByRank(sheet_event, max(1, int(event_count * 0.01))),
-        'top5': getResultByRank(sheet_event, max(1, int(event_count * 0.05))),
-        'top10': getResultByRank(sheet_event, max(1, int(event_count * 0.1))),
-        'top20': getResultByRank(sheet_event, max(1, int(event_count * 0.2))),
-        'top50': getResultByRank(sheet_event, max(1, int(event_count * 0.5))),
-        'slowest': getResultByRank(sheet_event, event_count),
-        'cnt': event_count
-        }
+        if cur_event in ['333bf', '333mbf', '444bf', '555bf']:
+            sheet_event = df_single[df_single['eventId'].astype(str) == str(cur_event)]
+            event_count = sheet_event.shape[0]
+            row = {
+            'eventId': cur_event,
+            'wr': getResultByRank(sheet_event, 1),
+            'top001': getResultByRank(sheet_event, max(1, int(event_count * 0.001))),
+            'top1': getResultByRank(sheet_event, max(1, int(event_count * 0.01))),
+            'top5': getResultByRank(sheet_event, max(1, int(event_count * 0.05))),
+            'top10': getResultByRank(sheet_event, max(1, int(event_count * 0.1))),
+            'top20': getResultByRank(sheet_event, max(1, int(event_count * 0.2))),
+            'top50': getResultByRank(sheet_event, max(1, int(event_count * 0.5))),
+            'slowest': getResultByRank(sheet_event, event_count),
+            'cnt': event_count
+            }
+        else:
+            sheet_event = df[df['eventId'].astype(str) == str(cur_event)]
+            event_count = sheet_event.shape[0]
+            row = {
+            'eventId': cur_event,
+            'wr': getResultByRank(sheet_event, 1),
+            'top001': getResultByRank(sheet_event, max(1, int(event_count * 0.001))),
+            'top1': getResultByRank(sheet_event, max(1, int(event_count * 0.01))),
+            'top5': getResultByRank(sheet_event, max(1, int(event_count * 0.05))),
+            'top10': getResultByRank(sheet_event, max(1, int(event_count * 0.1))),
+            'top20': getResultByRank(sheet_event, max(1, int(event_count * 0.2))),
+            'top50': getResultByRank(sheet_event, max(1, int(event_count * 0.5))),
+            'slowest': getResultByRank(sheet_event, event_count),
+            'cnt': event_count
+            }
+
         rows.append(row)
 
     # 转成DataFrame
     result_df = pd.DataFrame(rows)
     print(rows)
+
     # 保存成CSV（根据需要修改文件名）
     result_df.to_csv('event_rank_summary.csv', index=False, encoding='utf-8-sig')
     print("Summary saved to event_rank_summary.csv")
