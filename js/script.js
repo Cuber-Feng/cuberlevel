@@ -122,6 +122,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             document.getElementById('scoreOfMyEvents').innerHTML = `
             <strong>My Events Score: </strong>
             <span>${scoreofMY}</span>
+            <span> (${myEventCnt} events)</span>
             `;
 
             table.appendChild(tbody);
