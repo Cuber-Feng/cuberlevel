@@ -15,7 +15,7 @@ class Event {
     }
 
     getGrade(result = -1) {
-        if (result == this.wr)
+        if (result <= this.wr)
             return 100;
         else if (result <= this.top01)
             return 95 + (this.top01 - result) / (this.top01 - this.wr) * 5;
