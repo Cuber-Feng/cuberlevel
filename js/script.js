@@ -76,7 +76,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     // the single result: record.single.best
                     // the single score: eventDict.get(eventId).getGrade(record.single.best) // only for bf events
                     let single_result = record.single.best;
-                    console.log(eventId, single_result);
+                    // console.log(eventId, single_result);
 
                     tr.appendChild(createEl('td', record.single.country_rank));
                     tr.appendChild(createEl('td', record.single.continent_rank));
@@ -91,7 +91,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
 
                     if (['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
                         let single_score = eventDict.get(eventId).getGrade(single_result);
-                        console.log(eventId, single_score);
+                        // console.log(eventId, single_score);
                         myEventCnt += 1;
                         let sc = createEl('td', single_score.toFixed(2));
                         sc.classList = 'score';
@@ -268,7 +268,7 @@ fetch('./event_rank_summary.csv')
                     }
                     if (colIndex == cells.length - 1) {
                         eventDict.set(cur_eventId, event_obj);
-                        console.log(event_obj);
+                        // console.log(event_obj);
                         event_obj = null;
                     }
                 }
@@ -279,7 +279,7 @@ fetch('./event_rank_summary.csv')
             table.appendChild(tr);
         });
 
-        console.log(eventDict);
+        // console.log(eventDict);
 
         const container = document.getElementById('table-container');
         container.innerHTML = '';
@@ -299,7 +299,7 @@ const ul = document.getElementById('eventList');
 for (const key in eventKind) {
     const li = document.createElement('li');
     let imgs = ``;
-    console.log(eventKind[key]);
+    // console.log(eventKind[key]);
 
     for (const i in eventKind[key]) {
         imgs += `<img style='width: 1.5rem; margin: 0 4px' src=./cube_icons/${eventKind[key][i]}.svg>`

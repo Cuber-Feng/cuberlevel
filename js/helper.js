@@ -300,7 +300,7 @@ function decodeMultiBlind(result) {
     const minutes = parseInt(resultStr.slice(2, 7)); // 中间五位：分钟数
     const missed = parseInt(resultStr.slice(7, 9)); // 后两位：missed
 
-    const success = 99 - prefix;       // 成功数
+    const success = 99 - prefix + missed;       // 成功数
     const attempted = success + missed; // 总尝试数
     const timeMinutes = Math.floor(minutes / 60);
     const timeSeconds = minutes % 60;
