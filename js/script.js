@@ -47,8 +47,17 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             table.appendChild(thead);
 
             let tbody = document.createElement('tbody');
+            // the sum scores:
             let sumScore = 0;
             let myEventCnt = 0;
+            let sumKind = {
+                nxn: 0,
+                short: 0,
+                long: 0,
+                side: 0,
+                silent: 0
+            };
+            // now go through every event (eventId)
             Object.entries(data.personal_records).forEach(([eventId, record]) => {
                 if (!eventList.includes(eventId))
                     return;
@@ -64,39 +73,57 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 tr.appendChild(th);
 
                 if (record.single) {
+                    // the single result: record.single.best
+                    // the single score: eventDict.get(eventId).getGrade(record.single.best) // only for bf events
+                    let single_result = record.single.best;
+                    let single_score = eventDict.get(eventId).getGrade(single_result);
+
                     tr.appendChild(createEl('td', record.single.country_rank));
                     tr.appendChild(createEl('td', record.single.continent_rank));
                     tr.appendChild(createEl('td', record.single.world_rank));
                     if (eventId == '333fm') {
-                        tr.appendChild(createEl('td', record.single.best));
+                        tr.appendChild(createEl('td', single_result));
                     } else if (eventId == '333mbf' || eventId == '333mbo') {
-                        tr.appendChild(createEl('td', decodeMultiBlind(record.single.best)));
+                        tr.appendChild(createEl('td', decodeMultiBlind(single_result)));
                     } else {
-                        tr.appendChild(createEl('td', formatResult(record.single.best)));
+                        tr.appendChild(createEl('td', formatResult(single_result)));
                     }
 
                     if (['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
                         myEventCnt += 1;
-                        let sc = createEl('td', eventDict.get(eventId).getGrade(record.single.best).toFixed(2));
+                        let sc = createEl('td', single_score.toFixed(2));
                         sc.classList = 'score';
                         tr.appendChild(sc);
-                        sumScore = sumScore + eventDict.get(eventId).getGrade(record.single.best);
+                        sumScore = sumScore + single_score;
+                        for (const kind in sumKind) {
+                            if (eventKind[kind].includes(eventId)) {
+                                sumKind[kind] += single_score;
+                            }
+                        }
                     }
 
                     if (record.average) {
+                        let average_result = record.average.best;
+                        let average_score = eventDict.get(eventId).getGrade(average_result);
+
                         if (!['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
                             myEventCnt += 1;
-                            let sc = createEl('td', eventDict.get(eventId).getGrade(record.average.best).toFixed(2));
+                            let sc = createEl('td', average_score.toFixed(2));
                             sc.classList = 'score';
                             tr.appendChild(sc);
-                            sumScore = sumScore + eventDict.get(eventId).getGrade(record.average.best);
+                            sumScore = sumScore + average_score;
+                            for (const kind in sumKind) {
+                                if (eventKind[kind].includes(eventId)) {
+                                    sumKind[kind] += average_score;
+                                }
+                            }
                         }
                         if (eventId == '333fm') {
-                            tr.appendChild(createEl('td', (record.average.best / 100).toFixed(2)));
+                            tr.appendChild(createEl('td', (average_result / 100).toFixed(2)));
                         } else if (eventId == '333mbf' || eventId == '333mbo') {
-                            tr.appendChild(createEl('td', decodeMultiBlind(record.average.best)));
+                            tr.appendChild(createEl('td', decodeMultiBlind(average_result)));
                         } else {
-                            tr.appendChild(createEl('td', formatResult(record.average.best)));
+                            tr.appendChild(createEl('td', formatResult(average_result)));
                         }
                         tr.appendChild(createEl('td', record.average.world_rank));
                         tr.appendChild(createEl('td', record.average.continent_rank));
@@ -113,20 +140,37 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 tbody.appendChild(tr);
             });
 
+            // start to show the scores
+            document.getElementById('scores').classList.remove('hidden');
+            // overall
             let overall = (sumScore / 17).toFixed(2);
-            let scoreofMY = (sumScore / myEventCnt).toFixed(2);
-            document.getElementById('overallScore').classList.remove('hidden');
             document.getElementById('overallScore').innerHTML = `
-            <strong>Overall Score: </strong>
+            <strong>Overall: </strong>
             <span>${overall}</span>
             `;
-
-            document.getElementById('scoreOfMyEvents').classList.remove('hidden');
+            // my events
+            let scoreofMY = (sumScore / myEventCnt).toFixed(2);
             document.getElementById('scoreOfMyEvents').innerHTML = `
-            <strong>My Events Score: </strong>
+            <strong>My Events: </strong>
             <span>${scoreofMY}</span>
             <span> (${myEventCnt} events)</span>
             `;
+            // events by kind
+            const cntKind = {
+                nxn: 6,
+                short: 7,
+                long: 5,
+                side: 5,
+                silent: 5
+            };
+
+            for (const kind in sumKind) {
+                let scoreTmp = (sumKind[kind] / cntKind[kind]).toFixed(2);
+                document.getElementById('scoreOf' + kind).innerHTML = `
+                    <strong>${kindMap[kind]} Events: </strong>
+                    <span>${scoreTmp}</span>
+                `;
+            }
 
             table.appendChild(tbody);
             document.getElementById('gradeTable').innerHTML = ``;
@@ -247,3 +291,17 @@ fetch('./event_rank_summary.csv')
 document.getElementById("wcaIdInput").addEventListener("click", function () {
     this.select();
 });
+
+const ul = document.getElementById('eventList');
+
+for (const key in eventKind) {
+    const li = document.createElement('li');
+    let imgs = ``;
+    console.log(eventKind[key]);
+
+    for (const i in eventKind[key]) {
+        imgs += `<img style='width: 1.5rem; margin: 0 4px' src=./cube_icons/${eventKind[key][i]}.svg>`
+    }
+    li.innerHTML = `<b>${kindMap[key]} Events</b>: ${imgs}`;
+    ul.appendChild(li);
+}

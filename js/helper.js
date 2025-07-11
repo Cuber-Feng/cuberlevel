@@ -4,6 +4,22 @@ const eventList = [
     "sq1", "minx", "pyram", "444bf", "555bf", "333mbf"
 ]
 
+const eventKind = {
+    nxn: ['222', '333', '444', '555', '666', '777'],
+    short: ['222', '333', 'pyram', 'skewb', '333oh', 'clock', 'sq1'],
+    long: ['444', '555', '666', '777', 'minx'],
+    side: ['clock', 'minx', 'pyram', 'skewb', 'sq1'],
+    silent: ['333bf', '333mbf', '444bf', '555bf', '333fm']
+};
+
+const kindMap = {
+    nxn: 'NxNxN',
+    short: 'Short',
+    long: 'Long',
+    side: 'Side',
+    silent: 'Silent'
+}
+
 const eventNameMap = {
     '222': '2x2x2 Cube',
     '333': '3x3x3 Cube',
@@ -297,3 +313,5 @@ function isValidWcaId(id) {
     const pattern = /^[0-9]{4}[a-zA-Z]{4}[0-9]{2}$/;
     return pattern.test(id);
 }
+
+

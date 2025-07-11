@@ -12,6 +12,13 @@ h2 {
     padding: 0;
 }
 
+#eventList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+
 header {
     display: flex;
     align-items: center;
@@ -129,18 +136,22 @@ tr:hover {
     font-weight: 600;
 }
 
-#overallScore,
-#scoreOfMyEvents {
+#scores div {
     background-color: antiquewhite;
-    padding: 1rem;
+    padding: 0.2rem 1rem;
+    margin: 0.2rem 0.4rem 0.2rem 0;
     border-radius: 5px;
     width: fit-content;
 }
 
 #scores {
     margin-top: 1rem;
+    padding: 0.5rem 0;
     display: flex;
-    justify-content: space-evenly
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: 600px;
+    border-radius: 5px;
 }
 
 #scores:hover {
@@ -148,10 +159,10 @@ tr:hover {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-a{
+a {
     color: rgb(195, 121, 25);
 }
 
@@ -202,15 +213,15 @@ a{
         border-radius: 5px;
     }
 
-    #overallScore,
-    #scoreOfMyEvents {
+    #scores div {
         background-color: transparent;
-        padding: 0.5rem;
-        border-radius: 5px;
-        width: fit-content;
+        padding: 0.2rem 1rem;
+        margin: 0;
+        border: 0;
     }
 
-    th, td {
+    th,
+    td {
         padding: 2px 4px;
         border: 1px solid #2b2b2b;
     }
