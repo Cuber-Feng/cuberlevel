@@ -1,10 +1,14 @@
+<img src='./web_icons/grade.png'>
+
 # Cuber Score
 
-> A new marking system for cubers, which is to show a cuber's ability for all official WCA events. 
+> A new marking system for cubers, which is to show a cuber's ability for all official WCA events.
+>
+> Database Last Updated: Jul-11, 2025
 > 
 
 ## How does the marking system work?
-- It based on both the rank and the result.
+- It based on both the rank and the result. For the result, I use single result for 4 blindfolded events, while average result for others.
 - It will generate serval boundary points for every event.
   - e.g. for `3x3x3 Cube`
   
