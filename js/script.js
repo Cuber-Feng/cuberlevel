@@ -76,7 +76,7 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     // the single result: record.single.best
                     // the single score: eventDict.get(eventId).getGrade(record.single.best) // only for bf events
                     let single_result = record.single.best;
-                    let single_score = eventDict.get(eventId).getGrade(single_result);
+                    console.log(eventId, single_result);
 
                     tr.appendChild(createEl('td', record.single.country_rank));
                     tr.appendChild(createEl('td', record.single.continent_rank));
@@ -90,6 +90,8 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                     }
 
                     if (['333bf', '333mbf', '444bf', '555bf'].includes(eventId)) {
+                        let single_score = eventDict.get(eventId).getGrade(single_result);
+                        console.log(eventId, single_score);
                         myEventCnt += 1;
                         let sc = createEl('td', single_score.toFixed(2));
                         sc.classList = 'score';
@@ -205,7 +207,7 @@ fetch('./event_rank_summary.csv')
 
             cells.forEach((cell, colIndex) => {
                 const cellEl = document.createElement(rowIndex == 0 || colIndex == 0 ? 'th' : 'td');
-                if (eventList.includes(cell)) {
+                if (eventList.includes(cell) && colIndex == 0) {
                     cur_eventId = cell;
                     let img = document.createElement('img');
                     img.src = `./cube_icons/${cell}.svg`;
@@ -221,7 +223,7 @@ fetch('./event_rank_summary.csv')
                     cellEl.classList = 'sticky-col';
                 } else if (cell == 'cnt' || cell == 'cnt\r' || cell == 'cnt\n' || cell.trim() == 'cnt') {
                     cellEl.textContent = 'Competitors';
-                } else if (eventNameMap[cell]) {
+                } else if (eventNameMap[cell] && rowIndex == 0) {
                     cellEl.textContent = eventNameMap[cell];
                 } else if (colIndex == cells.length - 1) {
                     cellEl.textContent = formatCompactNumber(cell);
@@ -266,7 +268,7 @@ fetch('./event_rank_summary.csv')
                     }
                     if (colIndex == cells.length - 1) {
                         eventDict.set(cur_eventId, event_obj);
-                        // console.log(event_obj);
+                        console.log(event_obj);
                         event_obj = null;
                     }
                 }

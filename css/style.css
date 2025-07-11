@@ -166,6 +166,11 @@ a {
     color: rgb(195, 121, 25);
 }
 
+::selection {
+    background: #198964;
+    color: white;
+}
+
 @media (max-width: 600px) {
     #info {
         flex-direction: column;
