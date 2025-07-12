@@ -39,14 +39,14 @@ const eventNameMap = {
     'pyram': 'Pyraminx',
     'eventId': 'Event',
     'cnt\r': 'Competitors',
-    'wr': 'WR',
-    'top001': '0.1%',
-    'top1': '1%',
-    'top5': '5%',
-    'top10': '10%',
-    'top20': '20%',
-    'top50': '50%',
-    'slowest': 'Slowest',
+    'wr': 'WR (100pts)',
+    'top001': '0.1% (95pts)',
+    'top1': '1% (90pts)',
+    'top5': '5% (80pts)',
+    'top10': '10% (70pts)',
+    'top20': '20% (60pts)',
+    'top50': '50% (50pts)',
+    'slowest': 'Slowest (40pts)',
     '333mbf': '3x3 Multi-Blind'
 };
 

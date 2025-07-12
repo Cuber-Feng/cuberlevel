@@ -29,7 +29,6 @@ def formatResult(tick):
         return f"{seconds}.{subsec:02}"
 
 def getResultByRank(sheet, rank):
-    # print(sheet[sheet['worldRank'] == rank]['best'].tolist())
     if sheet[sheet['worldRank'] == rank]['best'].tolist():
         return sheet[sheet['worldRank'] == rank]['best'].tolist()[0]
     if rank == 0:
@@ -48,9 +47,9 @@ def processEvent(df, cur_event):
     print(event_count, 'cubers have ',cur_event,' average result')
 
     wr=getResultByRank(sheet_event, 1)
-    top01=getResultByRank(sheet_event, int(event_count*0.001))
-    top1=getResultByRank(sheet_event, int(event_count*0.01))
-    top5=getResultByRank(sheet_event, int(event_count*0.05))
+    top01=getResultByRank(sheet_event, max(int(event_count*0.001),3))
+    top1=getResultByRank(sheet_event, max(int(event_count*0.01),10))
+    top5=getResultByRank(sheet_event, max(int(event_count*0.05),50))
     top10=getResultByRank(sheet_event, int(event_count*0.1))
     top20=getResultByRank(sheet_event, int(event_count*0.2))
     top50=getResultByRank(sheet_event, int(event_count*0.5))
@@ -78,9 +77,9 @@ def makeFile(df, df_single):
             row = {
             'eventId': cur_event,
             'wr': getResultByRank(sheet_event, 1),
-            'top001': getResultByRank(sheet_event, max(1, int(event_count * 0.001))),
-            'top1': getResultByRank(sheet_event, max(1, int(event_count * 0.01))),
-            'top5': getResultByRank(sheet_event, max(1, int(event_count * 0.05))),
+            'top001': getResultByRank(sheet_event, max(1, max(int(event_count * 0.001), 3))),
+            'top1': getResultByRank(sheet_event, max(1, max(int(event_count * 0.01), 10))),
+            'top5': getResultByRank(sheet_event, max(1, max(int(event_count * 0.05), 50))),
             'top10': getResultByRank(sheet_event, max(1, int(event_count * 0.1))),
             'top20': getResultByRank(sheet_event, max(1, int(event_count * 0.2))),
             'top50': getResultByRank(sheet_event, max(1, int(event_count * 0.5))),
