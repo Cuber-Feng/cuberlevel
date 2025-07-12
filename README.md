@@ -15,13 +15,14 @@
   | Boundary Point  | Result   | Score |
   |-----------------|----------|-------|
   | World Record    | 3.91     | 100   |
-  | Top 0.1%        | 6.67     | 95    |
-  | Top 1%          | 8.58     | 90    |
-  | Top 5%          | 11.22    | 80    |
+  | Top 0.1% or WR3        | 6.67     | 95    |
+  | Top 1% or WR10         | 8.58     | 90    |
+  | Top 5% or WR50         | 11.22    | 80    |
   | Top 10%         | 13.27    | 70    |
   | Top 20%         | 16.67    | 60    |
   | Top 50%         | 28.74    | 50    |
   | The Slowest One | 8:45.07  | 40    |
+  
 - And different boundary points have their corresponding score. The cuber will get a score between two boundary points where he or she is in.
   - e.g. If your `3x3x3 Cube`'s PR is `9.90`, which is `(8.58+11.22)/2`, then your score is `85`.
 - The Code (For score calculation)
