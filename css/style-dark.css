@@ -65,7 +65,7 @@ body.dark {
 
 @media (max-width: 600px) {
     .dark #scores {
-        background-color: #424769;
+        background-color: #001d31;
     }
     .dark th,
     .dark td {
