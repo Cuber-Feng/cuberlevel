@@ -27,7 +27,7 @@
 
     <!-- 側邊欄 -->
     <div id="sidebar" class="sidebar">
-        <div style="font-size: large; margin-bottom: 10px; font-weight: 600;">Cuber's Score</div>
+        <div class="sidebar-title">Sidebar</div>
         <a href="../index.html"><img src="../web_icons/search-nav.png" style="height: 1.1rem;">Search</a>
         <a href="./battle.html"><img src="../web_icons/battle.png" style="height: 1.1rem;">Battle</a>
         <a href="./appendix.html"><img src="../web_icons/paper-clip.png" style="height: 1.1rem;">Appendix</a>
@@ -43,16 +43,7 @@
     </div>
 
 
-    <script>
-        const menuButton = document.getElementById('menuButton');
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
-
-        menuButton.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            content.classList.toggle('shift');
-        });
-    </script>
+    <script src="../js/nav.js"></script>
 
 </body>
 
