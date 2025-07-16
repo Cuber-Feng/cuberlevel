@@ -1,0 +1,18 @@
+.dark .material-input {
+  border-bottom: 2px solid #808080;
+  background-color: #1e1e1e !important;
+  color: white;
+}
+
+.dark .material-input:focus {
+  border-bottom: 2px solid #3f51b5;
+}
+
+.dark .material-button {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.dark .material-button:hover {
+  background-color: #303f9f;
+}

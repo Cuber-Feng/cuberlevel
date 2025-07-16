@@ -1,0 +1,76 @@
+body.dark {
+    background: #2b2b2b;
+    color: white;
+}
+
+.dark .card {
+    background: #1e1e1e;
+}
+
+.dark #info {
+    background: #2b2b2b;
+    color: white;
+}
+
+
+.dark table {
+    background-color: #2b2b2b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+
+.dark th {
+    background-color: #1e1e1e;
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dark th.score {
+    background-color: #003153;
+}
+
+.dark td {
+    color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.dark td.score {
+    background-color: #001d31;
+}
+
+.dark td.score:hover,
+.dark tr:hover {
+    background-color: rgba(226, 226, 226, 0.30);
+}
+.dark #scores div {
+    background-color: #001d31;
+}
+
+
+.dark #scores:hover {
+    background-color: #001d31;
+}
+
+
+.dark ::selection {
+    background: #198964;
+    color: white;
+}
+
+.dark #eventList img,
+.dark table img{
+    filter: invert(1);
+}
+
+@media (max-width: 600px) {
+    .dark #scores {
+        background-color: #424769;
+    }
+    .dark th,
+    .dark td {
+        padding: 2px 4px;
+        border: 1px solid #e1e1e1;
+    }
+
+}
