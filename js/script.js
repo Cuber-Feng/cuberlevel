@@ -193,7 +193,7 @@ document.getElementById('wcaIdInput').addEventListener("keydown", function (even
     }
 });
 
-fetch('../event_rank_summary.csv')
+fetch('./event_rank_summary.csv')
     .then(response => response.text())
     .then(csvText => {
         const rows = csvText.trim().split('\n');
