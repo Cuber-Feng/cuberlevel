@@ -1,9 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    /* padding: 20px; */
+    padding: 20px;
     background: #f4f4f4;
-    /* width: fit-content; */
-    /* max-width: 90vw; */
+    width: fit-content;
+    max-width: 90vw;
     margin: 0 auto;
 }
 

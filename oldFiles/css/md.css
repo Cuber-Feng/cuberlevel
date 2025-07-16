@@ -4,7 +4,7 @@
   gap: 10px;
   font-family: 'Roboto', sans-serif;
   width: fit-content;
-  margin: 0 20px 20px 20px;
+  margin: 20px;
 }
 
 .material-input {
@@ -41,14 +41,10 @@
 
 #lookupBtn {
   display: flex;
-  align-items: center;
-  /* 垂直居中 */
-  justify-content: center;
-  /* 水平居中 */
-  padding: 6px;
-  /* 去除多餘內邊距 */
-  border: none;
-  /* 去掉按鈕邊框（可選） */
+  align-items: center;    /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  padding: 6px;             /* 去除多餘內邊距 */
+  border: none;           /* 去掉按鈕邊框（可選） */
 }
 
 #lookupBtn img {
@@ -63,8 +59,7 @@
     width: 90vw;
     margin-left: 0;
     margin-right: 0;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: space-between
   }
 
   #wcaIdInput {

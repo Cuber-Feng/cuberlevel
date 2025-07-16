@@ -71,7 +71,6 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                 th.appendChild(img);
                 th.classList = 'sticky-col';
                 tr.appendChild(th);
-                let eCnt = 5;// empry cells for each row
 
                 if (record.single) {
                     // the single result: record.single.best
@@ -103,7 +102,6 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                                 sumKind[kind] += single_score;
                             }
                         }
-                        eCnt -= 1;
                     }
 
                     if (record.average) {
@@ -133,9 +131,11 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
                         tr.appendChild(createEl('td', record.average.continent_rank));
                         tr.appendChild(createEl('td', record.average.country_rank));
                     } else {
-                        for (i = 0; i < eCnt; i++) {
-                            tr.appendChild(createEl('td', ' '));
-                        }
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
+                        tr.appendChild(createEl('td', ' '));
                     }
                 }
 
@@ -193,7 +193,7 @@ document.getElementById('wcaIdInput').addEventListener("keydown", function (even
     }
 });
 
-fetch('../event_rank_summary.csv')
+fetch('./event_rank_summary.csv')
     .then(response => response.text())
     .then(csvText => {
         const rows = csvText.trim().split('\n');
@@ -281,12 +281,12 @@ fetch('../event_rank_summary.csv')
 
         // console.log(eventDict);
 
-        // const container = document.getElementById('table-container');
-        // container.innerHTML = '';
-        // container.appendChild(table);
+        const container = document.getElementById('table-container');
+        container.innerHTML = '';
+        container.appendChild(table);
     })
     .catch(error => {
-        console.log('Failed to load CSV: ' + error);
+        document.getElementById('table-container').textContent = 'Failed to load CSV: ' + error;
     });
 
 
@@ -294,16 +294,16 @@ document.getElementById("wcaIdInput").addEventListener("click", function () {
     this.select();
 });
 
-// const ul = document.getElementById('eventList');
+const ul = document.getElementById('eventList');
 
-// for (const key in eventKind) {
-//     const li = document.createElement('li');
-//     let imgs = ``;
-//     // console.log(eventKind[key]);
+for (const key in eventKind) {
+    const li = document.createElement('li');
+    let imgs = ``;
+    // console.log(eventKind[key]);
 
-//     for (const i in eventKind[key]) {
-//         imgs += `<img style='width: 1.5rem; margin: 0 4px' src=./cube_icons/${eventKind[key][i]}.svg>`
-//     }
-//     li.innerHTML = `<b>${kindMap[key]} Events</b>: ${imgs}`;
-//     ul.appendChild(li);
-// }
+    for (const i in eventKind[key]) {
+        imgs += `<img style='width: 1.5rem; margin: 0 4px' src=./cube_icons/${eventKind[key][i]}.svg>`
+    }
+    li.innerHTML = `<b>${kindMap[key]} Events</b>: ${imgs}`;
+    ul.appendChild(li);
+}

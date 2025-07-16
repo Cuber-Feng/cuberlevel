@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./web_icons/grade.png" type="image/x-icon">
+    <title>Cuber's Score</title>
+    <link rel="stylesheet" href="./css/md.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Cuber's Score</h1>
+        <div class="material-bar">
+            <input type="text" id="wcaIdInput" placeholder="WCA ID" class="material-input">
+            <button id="lookupBtn" class="material-button">
+                <img src="./web_icons/search.svg">
+            </button>
+        </div>
+    </header>
+
+    <div id="person" class="card">
+        <div id="info">
+            <div id="info-avator">Please search by WCA ID <code>(e.g. 2017FENG35)</code> to see the information.<br>
+                PS: You can also input name <code>(e.g. Tymon Kolasiński)</code>, it will go to WCA search.</div>
+            <div id="info-text">
+                <div id="info-name"></div>
+                <div id="info-other"></div>
+            </div>
+        </div>
+        <div id="scores" class="hidden">
+            <div id="overallScore"></div>
+            <div id="scoreOfMyEvents"></div>
+            <div id="scoreOfnxn"></div>
+            <div id="scoreOfshort"></div>
+            <div id="scoreOflong"></div>
+            <div id="scoreOfside"></div>
+            <div id="scoreOfsilent"></div>
+        </div>
+        <div id="gradeTable"></div>
+    </div>
+
+    <div class="card">
+        <h2>Appendix</h2>
+        <div style="height: 0.8rem;"></div>
+        <b style="font-size: 1.2rem;">1. Different Kind of Events</b>
+        <div style="height: 0.6rem;"></div>
+        <div id="eventList"></div>
+        <div style="height: 0.8rem;"></div>
+
+        <b style="font-size: 1.2rem;">2. Reference Table</b>
+        <div style="height: 0.6rem;"></div>
+        <div>(All blindfolded events use single result, others use average result)</div>
+        <div id="table-container">Loading...</div>
+    </div>
+
+    <div class="card">
+        <h2>About</h2>
+        <ul>
+            <li><strong>Result source: </strong><code>WCA API<br>(Real-time updates)</code></li>
+            <li><strong>Appendix Table: </strong><code>WCA Result Export<br>(Last Updated: Jul-11, 2025)</code></li>
+            <li><strong>Source Code & Rating Method: </strong><a href="https://github.com/Cuber-Feng/cuberlevel"
+                    target="_blank">GitHub</a></li>
+        </ul>
+    </div>
+
+
+    <footer>
+        <p style="text-align: center;">By Maple Feng (<a href="https://www.worldcubeassociation.org/persons/2017FENG35"
+                target="_blank">2017FENG35</a>)</p>
+    </footer>
+
+    <script src="./js/helper.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/score.js"></script>
+</body>
+
+</html>

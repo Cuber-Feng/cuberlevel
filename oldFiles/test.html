@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./web_icons/grade.png" type="image/x-icon">
-    <title>Cuber's Score</title>
-    <link rel="stylesheet" href="./css/nav.css">
-    <link rel="stylesheet" href="./css/md.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自寫響應式導航</title>
+    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./md.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <!-- 頂部 -->
+    <!-- 頂部導航欄 -->
     <div class="navbar">
         <div>Cuber's Score</div>
         <div class="menu-items">
-            <a href="./index.html"><img src="./web_icons/search-nav.png" style="height: 1.1rem;">Search</a>
-            <a href="./pages/battle.html"><img src="./web_icons/battle.png" style="height: 1.1rem;">Battle</a>
-            <a href="./pages/appendix.html"><img src="./web_icons/paper-clip.png" style="height: 1.1rem;">Appendix</a>
-            <a href="./pages/about.html"><img src="./web_icons/about.png" style="height: 1.1rem;">About</a>
+            <a href="./test.html">Search</a>
+            <a href="./battle.html">Battle</a>
+            <a href="./appendix.html">Appendix</a>
+            <a href="./about.html">About</a>
         </div>
         <button id="menuButton" class="menu-button">☰</button>
     </div>
@@ -28,10 +27,11 @@
     <!-- 側邊欄 -->
     <div id="sidebar" class="sidebar">
         <div style="font-size: large; margin-bottom: 10px; font-weight: 600;">Cuber's Score</div>
-        <a href="./index.html"><img src="./web_icons/search-nav.png" style="height: 1.1rem;">Search</a>
-        <a href="./pages/battle.html"><img src="./web_icons/battle.png" style="height: 1.1rem;">Battle</a>
-        <a href="./pages/appendix.html"><img src="./web_icons/paper-clip.png" style="height: 1.1rem;">Appendix</a>
-        <a href="./pages/about.html"><img src="./web_icons/about.png" style="height: 1.1rem;">About</a>
+
+        <a href="./test.html">Search</a>
+        <a href="./battle.html">Battle</a>
+        <a href="./appendix.html">Appendix</a>
+        <a href="./about.html">About</a>
     </div>
 
     <!-- 主內容 -->
@@ -78,11 +78,9 @@
         });
     </script>
 
-    <script src="./js/script.js"></script>
-
-
-    <script src="./js/helper.js"></script>
-    <script src="./js/score.js"></script>
+    <script src="../js/helper.js"></script>
+    <script src="../script.js"></script>
+    <script src="../js/score.js"></script>
 
 </body>
 

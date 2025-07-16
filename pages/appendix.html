@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../web_icons/grade.png" type="image/x-icon">
+    <title>Cuber's Score</title>
+    <link rel="stylesheet" href="../css/md.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- 頂部導航欄 -->
+    <div class="navbar">
+        <div>Cuber's Score</div>
+        <div class="menu-items">
+            <a href="../index.html"><img src="../web_icons/search-nav.png" style="height: 1.1rem;">Search</a>
+            <a href="./battle.html"><img src="../web_icons/battle.png" style="height: 1.1rem;">Battle</a>
+            <a href="./appendix.html"><img src="../web_icons/paper-clip.png" style="height: 1.1rem;">Appendix</a>
+            <a href="./about.html"><img src="../web_icons/about.png" style="height: 1.1rem;">About</a>
+        </div>
+        <button id="menuButton" class="menu-button">☰</button>
+    </div>
+
+    <!-- 側邊欄 -->
+    <div id="sidebar" class="sidebar">
+        <div style="font-size: large; margin-bottom: 10px; font-weight: 600;">Cuber's Score</div>
+        <a href="../index.html"><img src="../web_icons/search-nav.png" style="height: 1.1rem;">Search</a>
+        <a href="./battle.html"><img src="../web_icons/battle.png" style="height: 1.1rem;">Battle</a>
+        <a href="./appendix.html"><img src="../web_icons/paper-clip.png" style="height: 1.1rem;">Appendix</a>
+        <a href="./about.html"><img src="../web_icons/about.png" style="height: 1.1rem;">About</a>
+    </div>
+
+    <!-- 主內容 -->
+    <div id="content" class="content">
+        <div class="card">
+            <h2>Appendix</h2>
+            <div style="height: 0.8rem;"></div>
+            <b style="font-size: 1.2rem;">1. Different Kind of Events</b>
+            <div style="height: 0.6rem;"></div>
+            <div id="eventList"></div>
+            <div style="height: 0.8rem;"></div>
+
+            <b style="font-size: 1.2rem;">2. Reference Table</b>
+            <div style="height: 0.6rem;"></div>
+            <div>(All blindfolded events use single result, others use average result)</div>
+            <div id="table-container">Loading...</div>
+        </div>
+    </div>
+
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+
+        menuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            content.classList.toggle('shift');
+        });
+    </script>
+    <script src="../js/helper.js"></script>
+    <script src="../js/appendix.js"></script>
+    <script src="../js/score.js"></script>
+
+</body>
+
+</html>
