@@ -1,9 +1,11 @@
+let hasSelectedOnce = false;
+
 document.getElementById('lookupBtn').addEventListener('click', () => {
+    hasSelectedOnce = false;
     const wcaId = document.getElementById('wcaIdInput').value.trim();
     if (!wcaId) {
         return;
-    }
-    if (!isValidWcaId(wcaId)) {
+    } else if (!isValidWcaId(wcaId)) {
         window.open(`https://www.worldcubeassociation.org/search?q=${wcaId}`, "_blank");
         return;
     }
@@ -14,6 +16,9 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
         .then(response => {
             if (!response.ok) {
                 throw new Error('Competitor not found.');
+            } else {
+                localStorage.setItem('lastSearch', wcaId);
+                console.log('get', wcaId);
             }
             return response.json();
         })
@@ -289,21 +294,19 @@ fetch('./event_rank_summary.csv')
         console.log('Failed to load CSV: ' + error);
     });
 
+// click the search bar will auto select all content
 
 document.getElementById("wcaIdInput").addEventListener("click", function () {
-    this.select();
+    if (!hasSelectedOnce) {
+        this.select();
+        hasSelectedOnce = true;  // 之後不再自動選中
+    }
 });
 
-// const ul = document.getElementById('eventList');
-
-// for (const key in eventKind) {
-//     const li = document.createElement('li');
-//     let imgs = ``;
-//     // console.log(eventKind[key]);
-
-//     for (const i in eventKind[key]) {
-//         imgs += `<img style='width: 1.5rem; margin: 0 4px' src=./cube_icons/${eventKind[key][i]}.svg>`
-//     }
-//     li.innerHTML = `<b>${kindMap[key]} Events</b>: ${imgs}`;
-//     ul.appendChild(li);
-// }
+window.addEventListener('DOMContentLoaded', () => {
+    const lastKeyword = localStorage.getItem('lastSearch');
+    if (lastKeyword) {
+        document.getElementById('wcaIdInput').value = lastKeyword;
+        document.getElementById('lookupBtn').click(); // 触发按钮点击事件
+    }
+});
