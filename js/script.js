@@ -277,25 +277,17 @@ fetch('./event_rank_summary.csv')
                         event_obj = null;
                     }
                 }
-
                 tr.appendChild(cellEl);
             });
 
             table.appendChild(tr);
         });
-
-        // console.log(eventDict);
-
-        // const container = document.getElementById('table-container');
-        // container.innerHTML = '';
-        // container.appendChild(table);
     })
     .catch(error => {
         console.log('Failed to load CSV: ' + error);
     });
 
 // click the search bar will auto select all content
-
 document.getElementById("wcaIdInput").addEventListener("click", function () {
     if (!hasSelectedOnce) {
         this.select();

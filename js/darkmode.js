@@ -2,6 +2,7 @@ const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const body = document.body;
 const topButton = document.getElementById('topimg');
 const sideButton = document.getElementById('sideimg');
+let lastMode = 'light';
 
 mediaQuery.addEventListener('change', (e) => {
     const isDark = e.matches;
@@ -18,6 +19,7 @@ function goDark() {
         topButton.src = './web_icons/moon.png';
         sideButton.src = './web_icons/moon.png';
     }
+    localStorage.setItem('lastMode', 'dark');
 }
 
 function goLight() {
@@ -26,6 +28,8 @@ function goLight() {
         topButton.src = './web_icons/sun.png';
         sideButton.src = './web_icons/sun.png';
     }
+    localStorage.setItem('lastMode', 'light');
+
 }
 
 function toggleMode() {
@@ -33,9 +37,12 @@ function toggleMode() {
     if (body.classList.contains('dark')) {
         topButton.src = './web_icons/moon.png';
         sideButton.src = './web_icons/moon.png';
+        localStorage.setItem('lastMode', 'dark');
+
     } else {
         topButton.src = './web_icons/sun.png';
         sideButton.src = './web_icons/sun.png';
+        localStorage.setItem('lastMode', 'light');
     }
 }
 
@@ -43,8 +50,11 @@ function toggleMode() {
 window.addEventListener('load', () => {
     // check the device's mode
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    lastMode = localStorage.getItem('lastMode');
 
-    if (isDark) {
+    if (lastMode) {
+        lastMode == 'dark' ? goDark() : goLight();
+    } else if (isDark) {
         goDark();
     }
 });
