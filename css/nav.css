@@ -6,6 +6,11 @@ body {
 /* 頂部導航欄 (桌面端顯示) */
 .navbar {
     display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100vw;
+    box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
     background: #003153;
@@ -33,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    
+
 }
 
 .navbar a {
@@ -97,6 +102,7 @@ body {
 
 .content {
     transition: transform 0.3s ease;
+    margin-top: 4rem;
     /* padding: 20px; */
 }
 
@@ -119,8 +125,13 @@ body {
         display: none;
     }
 
+    .navbar {
+        justify-content: space-around;
+    }
+
     .content {
         transform: none !important;
         padding: 20px;
+        margin-top: 3rem;
     }
 }
