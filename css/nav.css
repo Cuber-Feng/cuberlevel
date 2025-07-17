@@ -105,7 +105,7 @@ body {
 }
 
 /* 桌面端樣式 */
-@media(min-width: 600px) {
+@media(min-width: 755px) {
     .menu-items {
         display: flex;
         gap: 20px;

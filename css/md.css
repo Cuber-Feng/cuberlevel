@@ -58,7 +58,7 @@
   height: 1.5rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 755px) {
   .material-bar {
     width: 90vw;
     margin-left: 0;

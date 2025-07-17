@@ -171,7 +171,26 @@ a {
     color: white;
 }
 
-@media (max-width: 600px) {
+.toggle-button {
+    background-color: transparent;
+    border: none;
+    background-color: rgba(192, 192, 192, 0.1);
+    height: 3rem;
+    width: 3rem;
+    margin: 5rem auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-mode-button {
+    margin: 0;
+    height: 2rem;
+    width: 2rem;
+}
+
+@media (max-width: 755px) {
     #info {
         flex-direction: column;
         align-items: center;
