@@ -315,3 +315,28 @@ function isValidWcaId(id) {
 }
 
 
+class Player {
+    constructor(id) {
+        this.id = id; // 唯一 ID
+        this.records = []; // 儲存 eventId, result, score 的列表
+    }
+
+    // 新增一條紀錄
+    addRecord(eventId, result, score) {
+        this.records.push({ eventId, result, score });
+    }
+
+    // 獲取所有紀錄
+    getRecords() {
+        return this.records;
+    }
+
+    // 根據 eventId 查詢紀錄
+    findByEventId(eventId) {
+        return this.records.filter(record => record.eventId === eventId);
+    }
+
+    getRecordById(targetId) {
+        return this.records.find(r => r.eventId === targetId) || null;
+    }
+}

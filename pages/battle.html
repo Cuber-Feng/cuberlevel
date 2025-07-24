@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/md-dark.css">
     <link rel="stylesheet" href="../css/style-dark.css">
+    <link rel="stylesheet" href="../css/battle.css">
 </head>
 
 <body>
@@ -44,14 +45,48 @@
     <!-- 主內容 -->
     <div id="content" class="content">
         <div class="card">
-            <h2>Battle</h2>
+            <h2>Battle (beta)</h2>
             <p>Under development... (It will be completed within 99 years, please be patient)</p>
+            <p>It's Jul-24, 2025 right now, I have completed most of the part, except the 4 bf events.</p>
+            <div class="material-bar">
+                <input type="text" id="battle-id-1" placeholder="WCA ID 1" class="material-input">
+                <input type="text" id="battle-id-2" placeholder="WCA ID 2" class="material-input">
+                <button id="battleBtn" class="material-button">
+                    <img src="./web_icons/battle.png">
+                </button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Result</h2>
+            <table >
+                <thead>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td id="player1" colspan="2" style="text-align: center;">Player 1</td>
+                        <td id="player2" colspan="2" style="text-align: center;">Player 2</td>
+                    </tr>
+                    <tr>
+                        <td>Event</td>
+                        <td>Result</td>
+                        <td>Score</td>
+                        <td>Score</td>
+                        <td>Result</td>
+                    </tr>
+                </thead>
+                <tbody id="compareTable">
+
+                </tbody>
+
+            </table>
         </div>
     </div>
 
-
+    <script src="../js/helper.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/darkmode.js"></script>
+    <script src="../js/battle.js"></script>
+    <script src="../js/score.js"></script>
+    <script src="../js/battleHepler.js"></script>
 
 
 </body>
