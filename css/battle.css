@@ -1,7 +1,24 @@
-#battle-id-1, #battle-id-2 {
+#battle-id-1,
+#battle-id-2 {
     width: 6.5rem;
 }
 
-#battleBtn img{
+#battleBtn img {
     width: 1rem;
+}
+
+thead td {
+    text-align: center;
+    font-weight: 600;
+}
+
+#compareTable>tr>td:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#compareTable>tr>td:nth-child(3),
+#compareTable>tr>td:nth-child(2) {
+    text-align: right;
 }
