@@ -340,3 +340,38 @@ class Player {
         return this.records.find(r => r.eventId === targetId) || null;
     }
 }
+
+function addToRecentWcaIds(wcaId) {
+    const key = 'lastSearchList';
+    // 从 localStorage 中获取当前列表
+    let list = JSON.parse(localStorage.getItem(key)) || [];
+
+    // 如果列表中已经有该 wcaId，就先移除（避免重复）
+    if (list.includes(wcaId)) {
+        if (list[0] == wcaId) { return; }
+        else {
+            let tmp = list[1];
+            list[1] = list[0];
+            list[0] = tmp;
+            localStorage.setItem(key, JSON.stringify(list));
+            return;
+        }
+    }
+
+    // 添加新的 wcaId 到开头
+    list.unshift(wcaId);
+
+    // 保持最多两个元素（FIFO，移除最早的）
+    if (list.length > 2) {
+        list.pop(); // 移除最后面的
+    }
+
+    // 存回 localStorage
+    localStorage.setItem(key, JSON.stringify(list));
+}
+
+function getRecentWcaIds() {
+    const key = 'lastSearchList';
+    const list = JSON.parse(localStorage.getItem(key)) || [];
+    return list;
+}

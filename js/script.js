@@ -17,7 +17,8 @@ document.getElementById('lookupBtn').addEventListener('click', () => {
             if (!response.ok) {
                 throw new Error('Competitor not found.');
             } else {
-                localStorage.setItem('lastSearch', wcaId);
+                // localStorage.setItem('lastSearch', wcaId);
+                addToRecentWcaIds(wcaId);
                 console.log('get', wcaId);
             }
             return response.json();
@@ -296,7 +297,8 @@ document.getElementById("wcaIdInput").addEventListener("click", function () {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-    const lastKeyword = localStorage.getItem('lastSearch');
+    // const lastKeyword = localStorage.getItem('lastSearch');
+    const lastKeyword = getRecentWcaIds()[0];
     if (lastKeyword) {
         document.getElementById('wcaIdInput').value = lastKeyword;
         document.getElementById('lookupBtn').click(); // 触发按钮点击事件

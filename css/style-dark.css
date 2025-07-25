@@ -63,6 +63,10 @@ body.dark {
     filter: invert(1);
 }
 
+.dark thead img{
+    filter: invert(0);
+}
+
 @media (max-width: 755px) {
     .dark #scores {
         background-color: #001d31;

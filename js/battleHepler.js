@@ -83,3 +83,10 @@ fetch('../event_rank_summary.csv')
     .catch(error => {
         console.log('Failed to load CSV: ' + error);
     });
+
+
+const customOrder = [
+    "222", "333", "444", "555", "666", "777",
+    "333oh", "333fm", "333bf", "clock", "skewb",
+    "sq1", "minx", "pyram", "444bf", "555bf", "333mbf"
+];
