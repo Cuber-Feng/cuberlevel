@@ -177,6 +177,8 @@ function checkBothDone() {
             if (p1resultValue < p2resultValue) {
                 p1score.style.backgroundColor = '#AFC8AD';
                 p2score.style.backgroundColor = '#FBA1B7';
+                p1score.classList.add('green');
+                p2score.classList.add('red');
             } else if (p1resultValue == p2resultValue) {
                 p1score.style.backgroundColor = 'lightyellow';
                 p2score.style.backgroundColor = 'lightyellow';
@@ -184,6 +186,8 @@ function checkBothDone() {
             else {
                 p1score.style.backgroundColor = '#FBA1B7';
                 p2score.style.backgroundColor = '#AFC8AD';
+                p2score.classList.add('green');
+                p1score.classList.add('red');
             }
 
             // tr append
@@ -221,9 +225,14 @@ function checkBothDone() {
         } else if (p1all > p2all) {
             p1score.style.backgroundColor = '#AFC8AD';
             p2score.style.backgroundColor = '#FBA1B7';
+            p1score.classList.add('green');
+            p2score.classList.add('red');
+
         } else {
             p1score.style.backgroundColor = '#FBA1B7';
             p2score.style.backgroundColor = '#AFC8AD';
+            p2score.classList.add('green');
+            p1score.classList.add('red');
         }
         // tr append
         const tr = document.createElement('tr'); // 創建 tr

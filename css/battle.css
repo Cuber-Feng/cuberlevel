@@ -10,13 +10,21 @@
 thead td {
     text-align: center;
     font-weight: 600;
+    font-size: 1rem;
 }
 
-#compareTable>tr>td:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
+#compareTable>tr>td:nth-child(1),
+#battleBtn {
+    text-align: center;
+    vertical-align: middle;
 }
+
+#compareTable>tr>td:nth-child(1) img,
+#battleBtn img {
+    display: block;
+    margin: auto;
+}
+
 
 #compareTable>tr>td:nth-child(3),
 #compareTable>tr>td:nth-child(2) {
