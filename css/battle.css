@@ -30,3 +30,8 @@ thead td {
 #compareTable>tr>td:nth-child(2) {
     text-align: right;
 }
+
+.table-container {
+    overflow-x: auto;
+    max-width: 90vw;
+}
