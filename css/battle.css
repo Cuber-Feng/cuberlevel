@@ -35,3 +35,13 @@ thead td {
     overflow-x: auto;
     max-width: 90vw;
 }
+
+.dark .green {
+    background-color: darkgreen !important;
+}
+.dark .red {
+    background-color: darkred !important;
+}
+.dark .yellow {
+    background-color: #393E46!important;
+}

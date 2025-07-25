@@ -182,6 +182,8 @@ function checkBothDone() {
             } else if (p1resultValue == p2resultValue) {
                 p1score.style.backgroundColor = 'lightyellow';
                 p2score.style.backgroundColor = 'lightyellow';
+                p2score.classList.add('yellow');
+                p1score.classList.add('yellow');
             }
             else {
                 p1score.style.backgroundColor = '#FBA1B7';
@@ -222,6 +224,8 @@ function checkBothDone() {
         if (p1all == p2all) {
             p1score.style.backgroundColor = 'lightyellow';
             p2score.style.backgroundColor = 'lightyellow';
+            p2score.classList.add('yellow');
+            p1score.classList.add('yellow');
         } else if (p1all > p2all) {
             p1score.style.backgroundColor = '#AFC8AD';
             p2score.style.backgroundColor = '#FBA1B7';

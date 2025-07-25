@@ -68,13 +68,6 @@ body.dark {
     filter: invert(0);
 }
 
-.dark .green {
-    background-color: darkgreen !important;
-}
-.dark .red {
-    background-color: darkred !important;
-}
-
 @media (max-width: 755px) {
     .dark #scores {
         background-color: #001d31;
