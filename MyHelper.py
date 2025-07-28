@@ -28,12 +28,26 @@ def formatResult(tick):
     else:
         return f"{seconds}.{subsec:02}"
 
+# def getResultByRank(sheet, rank):
+#     if sheet[sheet['worldRank'] == rank]['best'].tolist():
+#         return sheet[sheet['worldRank'] == rank]['best'].tolist()[0]
+#     if rank == 0 or rank == 1:
+#         return getResultByRank(sheet, 1)
+#     return getResultByRank(sheet, rank-1)
+
+
 def getResultByRank(sheet, rank):
-    if sheet[sheet['worldRank'] == rank]['best'].tolist():
-        return sheet[sheet['worldRank'] == rank]['best'].tolist()[0]
-    if rank == 0:
-        return getResultByRank(sheet, 1)
-    return getResultByRank(sheet, rank-1)
+    try:
+        filtered = sheet[sheet['worldRank'] == rank]['best'].tolist()
+        print(f"Checking rank {rank}: {filtered}")  # DEBUG
+        if filtered:
+            return filtered[0]
+        if rank <= 1:
+            raise ValueError("No result found for rank 1 — data may be malformed")
+        return getResultByRank(sheet, rank - 1)
+    except Exception as e:
+        print(f"Error during getResultByRank with rank={rank}: {e}")
+        raise
 
 
 def processEvent(df, cur_event):
